@@ -15,12 +15,11 @@
 
 <h1 align="center">Blog de Notícias</h1>
 
-<form action="Servlet1" method="post">
+<form action="Servlet1" name="dados" method="post">
 Título: <input type="text" name="titulo"><br>
 Subtítulo: <input type="text" name="subtitulo"><br>
 Categoria: <input type="text" name="categoria"><br>
 <textarea name="conteudo" rows="7" cols="30">Insira aqui o conteúdo da postagem...</textarea><br>
-Imagem: <input type="file" name="imagem"><br>
 <input type="submit" value="Publicar">
 </form>
 <BR>

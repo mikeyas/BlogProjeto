@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 /**
  * Servlet implementation class Servlet1
  */
@@ -47,11 +46,11 @@ public class Servlet1 extends HttpServlet {
 			postagem.setSubtitulo(request.getParameter("subtitulo"));
 			postagem.setCategoria(request.getParameter("categoria"));
 			postagem.setConteudo(request.getParameter("conteudo"));
-			//postagem.setImagem("/Imagens/"+request.getParameter("imagem"));
 			BlogController BlogControle = new BlogController();
 			BlogControle.getPostagens().add(postagem);
 			s.setAttribute("blogcontrole", BlogControle);
-			request.getRequestDispatcher("blog.jsp").forward(request,response);
+			s.setAttribute("postagem", postagem);
+			request.getRequestDispatcher("imagemupload.jsp").forward(request,response);
 
 			//out.println(postagem.getImagem());
 			
@@ -66,16 +65,16 @@ public class Servlet1 extends HttpServlet {
 			if(BlogControle!=null){
 			BlogControle.getPostagens().add(postagem);
 			s.setAttribute("blogcontrole", BlogControle);
-			request.getRequestDispatcher("blog.jsp").forward(request,response);
-			//out.println(postagem.getImagem());
+			s.setAttribute("postagem", postagem);
+			request.getRequestDispatcher("imagemupload.jsp").forward(request,response);
 			}else {
 				s.invalidate();
 				s = request.getSession();
 				BlogControle = new BlogController();
 				BlogControle.getPostagens().add(postagem);
 				s.setAttribute("blogcontrole", BlogControle);
-				request.getRequestDispatcher("blog.jsp").forward(request,response);
-				//out.println(postagem.getImagem());
+				s.setAttribute("postagem", postagem);
+				request.getRequestDispatcher("imagemupload.jsp").forward(request,response);
 
 			}
 		}

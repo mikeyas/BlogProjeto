@@ -1,6 +1,5 @@
 package blog;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,8 +16,17 @@ public class Postagem {
 	private String categoria;
 	private Date data = new Date();
 	private List<Comentário> comentarios;
+	private String imagem;
 
 	
+	public String getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
+	}
+
 	public Postagem(){
 		comentarios = new ArrayList<Comentário>();
 	}

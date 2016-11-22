@@ -29,7 +29,11 @@
 <font size="3"> - Em: <fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${postagem.data}"/></font>
 </td>
 </tr>
-
+<tr>
+<td>
+<img src="/BlogProjeto/imagens/${postagem.imagem}"/>
+</td>
+</tr>
 <tr><td align="justify" width=900>
 <hr>
 ${postagem.conteudo}
