@@ -5,6 +5,7 @@
 <%@page import="java.util.List , java.util.ArrayList"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,8 +31,8 @@
 </td>
 </tr>
 <tr>
-<td>
-<img src="/BlogProjeto/imagens/${postagem.imagem}"/>
+<td align="center">
+<img width="400px" height="400px" src="/BlogProjeto/imagens/${postagem.imagem}"/>
 </td>
 </tr>
 <tr><td align="justify" width=900>
@@ -43,7 +44,19 @@ ${postagem.conteudo}
 </table>
 <br>
 <br>
-
+<form> 
+			<label for="comentários">Comentários:</label>
+			<select name="comentários" > 
+			<option value='' selected="selected" ></option> 
+            <option value='exibir' >Exibir</option> 
+            <option value='ocultar' >Ocultar</option><br>
+            </select>
+</form>
+Valor param: ${param.comentários}
+<br>
+<fmt:parseNumber var="comentarios" type="number" value="${param.comentários}"/>
+Valor int: ${comentarios}
+<c:if test="${param.comentários != 'ocultar'}">
 <form action="Servlet2" method="post">
 <table align="center" width=500>
 <tr><td>
@@ -77,6 +90,7 @@ ${comentario.fone}
 </tr>
 </table>
 </c:forEach>
+</c:if>
 </c:if>
 </c:forEach>
 

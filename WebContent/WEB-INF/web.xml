@@ -8,6 +8,9 @@
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
+    <welcome-file>blog.html</welcome-file>
+    <welcome-file>blog.htm</welcome-file>
+    <welcome-file>blog.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
     <description></description>
@@ -43,7 +46,7 @@
     <description>Location to store uploaded file</description> 
     <param-name>file-upload</param-name> 
     <param-value>
- 		/home/mikeyas/workspace2/BlogProjeto/WebContent/imagens/
+ 		/opt/tomcat8/wtpwebapps/BlogProjeto/imagens/
      </param-value> 
 </context-param>
 </web-app>
