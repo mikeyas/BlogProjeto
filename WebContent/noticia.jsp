@@ -15,7 +15,7 @@
 <body>
 <h1 align=middle>Blog de Notícias</h1>
 <br>
-<a href="blog.jsp">(((VOLTAR)))</a>
+<input type="button" onClick="window.location.href='blog.jsp'"value="Voltar">
 <br>
 
 <fmt:parseNumber var="id" type="number" value="${param.id}"/>
@@ -23,7 +23,7 @@
 <c:forEach var="postagem" items="${blogcontrole.getPostagens()}">
 <c:if test="${postagem.hashCode()==id}">
 
-<table align="center">
+<table align="center" width=900>
 <tr><td align="center"><h3>${postagem.titulo}: ${postagem.subtitulo}</h3></td></tr>
 <tr><td align="center">
 <font size="3">Categoria: ${postagem.categoria}</font>
@@ -44,19 +44,27 @@ ${postagem.conteudo}
 </table>
 <br>
 <br>
-<form> 
-			<label for="comentários">Comentários:</label>
-			<select name="comentários" > 
-			<option value='' selected="selected" ></option> 
-            <option value='exibir' >Exibir</option> 
-            <option value='ocultar' >Ocultar</option><br>
-            </select>
-</form>
-Valor param: ${param.comentários}
-<br>
-<fmt:parseNumber var="comentarios" type="number" value="${param.comentários}"/>
-Valor int: ${comentarios}
-<c:if test="${param.comentários != 'ocultar'}">
+
+	<table align="center">
+	<tr>
+	<td align="center"> 
+	<form action="noticia.jsp" method="post"> 
+	<input type="hidden" name="id" value="${param.id}">
+	<input type="hidden" name="coments" value="2">
+	<input type="submit" align="middle" value="Ocultar Coments">	
+	</form>
+	</td>
+	<td align="center"> 
+	<form action="noticia.jsp" method="post"> 
+	<input type="hidden" name="id" value="${param.id}">
+	<input type="hidden" name="coments" value="1">
+	<input type="submit" align="middle" value="Exibir Coments">	
+	</form>
+	</td>
+	</tr>
+	</table> 
+	<br>
+<c:if test="${param.coments!=2}">
 <form action="Servlet2" method="post">
 <table align="center" width=500>
 <tr><td>
@@ -76,16 +84,17 @@ Telefone: <input type="text" name="fone"><br>
 
 
 <c:forEach var="comentario" items="${postagem.getComentarios()}">
-<table align="center" width=500>
+<table align="center" width=900>
 <tr>
-<td width=150><font size="2">
+<td width=200><font size="2">
 ${comentario.usuario}<br>
 ${comentario.email}<br>
 ${comentario.fone}
 </font>
+<br>
 </td>
-<td align=justify width=350>
-<font size="2"><i>Comentou em: <fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${comentario.data}"/><br></font>
+<td align=justify width=700>
+<br><hr><font size="2"><i>Comentou em: <fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${comentario.data}"/><br><hr></font>
 <font size="3">${comentario.conteudo}</font></td>
 </tr>
 </table>
