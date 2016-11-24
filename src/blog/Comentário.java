@@ -2,7 +2,7 @@ package blog;
 
 import java.util.Date;
 
-public class Coment√°rio {
+public class Coment·rio {
 
 	private String usuario;
 	private String email;

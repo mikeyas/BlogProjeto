@@ -4,7 +4,7 @@
 <%@page import="javax.servlet.http.*"%>
 <%@page import="java.util.List , java.util.ArrayList"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
@@ -14,17 +14,12 @@
 <body>
 
 <h1 align="center">Blog de Notícias</h1>
+<input type="button" onClick="window.location.href='blog.jsp'"value="Voltar">
 
-<form action="Servlet1" name="dados" method="post">
-Título: <input type="text" name="titulo"><br>
-Subtítulo: <input type="text" name="subtitulo"><br>
-Categoria: <input type="text" name="categoria"><br>
-<textarea name="conteudo" rows="7" cols="30" placeholder="Insira aqui o conteúdo da postagem..."> </textarea><br>
-<input type="submit" value="Publicar">
-</form>
 <BR>
 <BR>
 <BR>
+<c:set var="buscar" scope ="request" value="${param.buscar}"/>
 <form action="pesquisa.jsp" name="pesquisa">
 Pesquisar no site: <textarea name="buscar" rows="1" cols="30" placeholder="buscar..."></textarea>
 <input type="submit" value="Buscar">
@@ -37,11 +32,13 @@ Pesquisar no site: <textarea name="buscar" rows="1" cols="30" placeholder="busca
 </tr>
 <c:set var="bcontrole" scope ="session" value="${sessionScope.blogcontrole}"/>
 <c:forEach var="postagem" items="${bcontrole.getPostagens()}">
+<c:if test="${fn:contains(postagem.titulo, param.buscar) || fn:contains(postagem.subtitulo, param.buscar) || fn:contains(postagem.conteudo, param.buscar) }">
 <tr>
 <td><a href="noticia.jsp?id=${postagem.hashCode()}">${postagem.titulo}</a></td>
 <td>${postagem.subtitulo}</td>
 <td>${postagem.categoria}</td>
-
+</tr>
+</c:if>
 </c:forEach>
 </table>
 
