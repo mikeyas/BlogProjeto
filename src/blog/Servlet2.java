@@ -35,7 +35,7 @@ public class Servlet2 extends HttpServlet {
 
 		HttpSession s = request.getSession();
 		Integer id = Integer.parseInt(request.getParameter("id"));
-		Comentário coment = new Comentário();
+		Comentario coment = new Comentario();
 		coment.setUsuario(request.getParameter("usuario"));
 		coment.setEmail(request.getParameter("email"));
 		coment.setFone(request.getParameter("fone"));
