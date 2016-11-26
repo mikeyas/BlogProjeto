@@ -67,7 +67,7 @@ public class Postagem {
 		return data;
 	}
 
-	public List<Coment�rio> getComentarios() {
+	public List<Comentario> getComentarios() {
 		return comentarios;
 	}
 
