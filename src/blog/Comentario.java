@@ -2,7 +2,7 @@ package blog;
 
 import java.util.Date;
 
-public class Comentário {
+public class Comentario {
 
 	private String usuario;
 	private String email;

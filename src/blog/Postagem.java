@@ -15,7 +15,7 @@ public class Postagem {
 	private String conteudo;
 	private String categoria;
 	private Date data = new Date();
-	private List<Comentário> comentarios;
+	private List<Comentario> comentarios;
 	private String imagem;
 
 	
@@ -28,7 +28,7 @@ public class Postagem {
 	}
 
 	public Postagem(){
-		comentarios = new ArrayList<Comentário>();
+		comentarios = new ArrayList<Comentario>();
 	}
 
 	public String getTitulo() {
@@ -67,7 +67,7 @@ public class Postagem {
 		return data;
 	}
 
-	public List<Comentário> getComentarios() {
+	public List<Comentï¿½rio> getComentarios() {
 		return comentarios;
 	}
 
