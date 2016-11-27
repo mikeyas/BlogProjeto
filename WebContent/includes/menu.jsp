@@ -13,7 +13,6 @@
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="./">Home</a></li>
-					<li><a href="#about">Categorías</a></li>
 					<li><a href="#" data-toggle="modal"
 						data-target="#novaPostagem" data-whatever="@mdo">Novo Post</a></li>
 					<li><a href="#" data-toggle="modal" data-target="#busca"
