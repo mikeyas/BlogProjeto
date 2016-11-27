@@ -2,6 +2,7 @@ package blog;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collections;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,13 +23,28 @@ public class Servlet1 extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
+int ordem = 0;
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		PrintWriter out = response.getWriter(); 
+	    HttpSession s = request.getSession(); 
+	    BlogController BlogControle = (BlogController) s.getAttribute("blogcontrole"); 
+	    if(request.getParameter("ordem")!=null){ 
+	      ordem = Integer.parseInt(request.getParameter("ordem")); 
+	      for(Postagem p:BlogControle.getPostagens()){ 
+	        p.setOrdenaTipo(ordem); 
+	        //out.println(p.getTitulo()); 
+	      }
+	      
+	      Collections.sort(BlogControle.getPostagens()); 
+	      /*for(Postagem p:BlogControle.getPostagens()){ 
+	      out.println(p.getTitulo()); 
+	      }*/
+	      s.setAttribute("blogcontrole", BlogControle); 
+	      request.getRequestDispatcher("blog.jsp").forward(request,response); 
+	      }
 	}
 
 	/**
