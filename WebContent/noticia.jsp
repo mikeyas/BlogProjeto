@@ -1,107 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="pt-br">
+<head>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@page import="javax.servlet.*"%>
 <%@page import="javax.servlet.http.*"%>
 <%@page import="java.util.List , java.util.ArrayList"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<jsp:include page="includes/head.jsp" />
+
 <title>Blog de Notícias</title>
 </head>
 <body>
-<h1 align=middle>Blog de Notícias</h1>
-<br>
-<input type="button" onClick="window.location.href='blog.jsp'"value="Voltar">
-<br>
+	<jsp:include page="includes/menu.jsp" />
+	<jsp:include page="includes/modals.jsp" />
 
-<fmt:parseNumber var="id" type="number" value="${param.id}"/>
-<c:set var="blogcontrole" scope ="session" value="${sessionScope.blogcontrole}"/>
-<c:forEach var="postagem" items="${blogcontrole.getPostagens()}">
-<c:if test="${postagem.hashCode()==id}">
+	<div class="container theme-showcase" role="main">
 
-<table align="center" width=900>
-<tr><td align="center"><h3>${postagem.titulo}: ${postagem.subtitulo}</h3></td></tr>
-<tr><td align="center">
-<font size="3">Categoria: ${postagem.categoria}</font>
-<font size="3"> - Em: <fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${postagem.data}"/></font>
-</td>
-</tr>
-<tr>
-<td align="center">
-<img width="400px" height="400px" src="/BlogProjeto/imagens/${postagem.imagem}"/>
-</td>
-</tr>
-<tr><td align="justify" width=900>
-<hr>
-${postagem.conteudo}
-<hr>
-</td>
-</tr>
-</table>
-<br>
-<br>
+		<fmt:parseNumber var="id" type="number" value="${param.id}" />
+		<c:set var="blogcontrole" scope="session"
+			value="${sessionScope.blogcontrole}" />
+		<c:forEach var="postagem" items="${blogcontrole.getPostagens()}">
+			<c:if test="${postagem.hashCode()==id}">
 
-	<table align="center">
-	<tr>
-	<td align="center"> 
-	<form action="noticia.jsp" method="post"> 
-	<input type="hidden" name="id" value="${param.id}">
-	<input type="hidden" name="coments" value="2">
-	<input type="submit" align="middle" value="Ocultar Coments">	
-	</form>
-	</td>
-	<td align="center"> 
-	<form action="noticia.jsp" method="post"> 
-	<input type="hidden" name="id" value="${param.id}">
-	<input type="hidden" name="coments" value="1">
-	<input type="submit" align="middle" value="Exibir Coments">	
-	</form>
-	</td>
-	</tr>
-	</table> 
-	<br>
-<c:if test="${param.coments!=2}">
-<form action="Servlet2" method="post">
-<table align="center" width=500>
-<tr><td>
-Nome: <input type="text" name="usuario"><br>
-Email: <input type="text" name="email"><br>
-Telefone: <input type="text" name="fone"><br>
-<input type="hidden" name="id" value="${param.id}">
-<input type="submit" value="Publicar"><br>
-</td>
-<td>
-<textarea name="conteudo" rows="7" cols="40">Insira aqui seu comentário...</textarea>
-</td>
-</tr>
-</table>
-</form>
+				<div class="page-header">
+					<h1>
+						${postagem.titulo}<small> - ${postagem.subtitulo}</small>
+					</h1>
+					<small>Categoria: ${postagem.categoria} - Em: <fmt:formatDate
+							type="both" dateStyle="short" timeStyle="short"
+							value="${postagem.data}" /></small>
+				</div>
 
+				<div class="container">
+					<img class="img-thumbnail" alt="Imagem não encontrada"
+						class="media-object" src="/BlogProjeto/imagens/${postagem.imagem}"
+						data-holder-rendered="true" style="width: 200px; height: 200px;">
+					${postagem.conteudo}
+				</div>
 
+				<hr />
 
-<c:forEach var="comentario" items="${postagem.getComentarios()}">
-<table align="center" width=900>
-<tr>
-<td width=200><font size="2">
-${comentario.usuario}<br>
-${comentario.email}<br>
-${comentario.fone}
-</font>
-<br>
-</td>
-<td align=justify width=700>
-<br><hr><font size="2"><i>Comentou em: <fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${comentario.data}"/><br><hr></font>
-<font size="3">${comentario.conteudo}</font></td>
-</tr>
-</table>
-</c:forEach>
-</c:if>
-</c:if>
-</c:forEach>
+				<!-- Botões Comentários -->
+				<div class="row">
+					<div class="col-md-3">
+						<a href="#" data-toggle="modal" data-target="#novoComentario"
+							data-whatever="@mdo" class="btn btn-primary">Novo Post</a>
+					</div>
 
+					<div class="col-md-3">
+						<form action="noticia.jsp" method="post">
+							<input type="hidden" name="id" value="${param.id}"> <input
+								type="hidden" name="coments" value="2"> <input
+								type="submit" align="middle" class="btn btn-danger"
+								value="Ocultar Coments">
+						</form>
+					</div>
+
+					<div class="col-md-3">
+						<form action="noticia.jsp" method="post">
+							<input type="hidden" name="id" value="${param.id}"> <input
+								type="hidden" name="coments" value="1"> <input
+								type="submit" align="middle" class="btn btn-success"
+								value="Exibir Coments">
+						</form>
+					</div>
+				</div>
+				<!-- ./Botões Comentários -->
+
+				<!-- Modal Novo Comentário -->
+				<form action="Servlet2" name="dados" method="post">
+					<input type="hidden" name="id" value="${param.id}">
+					<div class="modal fade" id="novoComentario" tabindex="-1"
+						role="dialog" aria-labelledby="exampleModalLabel">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<h4 class="modal-title" id="exampleModalLabel">Novo
+										Comentário</h4>
+								</div>
+								<div class="modal-body">
+									<div class="form-group">
+										<label for="recipient-name" class="control-label">Nome:</label>
+										<input type="text" class="form-control" id="recipient-name"
+											name="usuario" placeholder="Digíte seu nome">
+									</div>
+									<div class="form-group">
+										<label for="recipient-name" class="control-label">E-mail:</label>
+										<input type="text" class="form-control" id="recipient-name"
+											name="email" placeholder="Digíte seu e-mail">
+									</div>
+									<div class="form-group">
+										<label for="recipient-name" class="control-label">Telefone:</label>
+										<input type="text" class="form-control" id="recipient-name"
+											name="fone" placeholder="Digíte o nº do seu telefone">
+									</div>
+									<div class="form-group">
+										<label for="message-text" class="control-label">Texto:</label>
+										<textarea class="form-control" id="message-text"
+											name="conteudo" rows="7" cols="30"
+											placeholder="Insira aqui seu comentário"></textarea>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">Fechar</button>
+									<button type="submit" class="btn btn-primary">Enviar</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+				<!-- ./Modal Novo Comentário -->
+
+				<!-- Lista de Comentários -->
+				<c:if test="${param.coments!=2}">
+				<br />
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<c:forEach var="comentario" items="${postagem.getComentarios()}">
+
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h3 class="panel-title">${comentario.usuario}
+											<small>(Comentou em: <fmt:formatDate type="both"
+													dateStyle="short" timeStyle="short"
+													value="${comentario.data}" /> | E-mail:
+												${comentario.email} | Tel.: ${comentario.fone} )
+											</small>
+										</h3>
+									</div>
+									<div class="panel-body">
+
+										<p>${comentario.conteudo}</p>
+									</div>
+								</div>
+
+							</c:forEach>
+						</div>
+					</div>
+				</c:if>
+				<!-- ./Lista de Comentários -->
+
+			</c:if>
+		</c:forEach>
+
+	</div>
 </body>
 </html>
