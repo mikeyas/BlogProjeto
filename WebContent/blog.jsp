@@ -28,11 +28,14 @@
 				value="${sessionScope.blogcontrole}" />
 			<c:forEach var="postagem" items="${bcontrole.getPostagens()}">
 				<div class="col-md-4">
-					<h2>${postagem.subtitulo}</h2>
+					<h2>${postagem.titulo}: ${postagem.subtitulo}</h2>
 					<p>${postagem.categoria}</p>
 					<p>
 						<a class="btn btn-default"
 							href="noticia.jsp?id=${postagem.hashCode()}" role="button">Mais
+							&raquo;</a>
+						<a class="btn btn-default"
+							href="Servlet1?excluir=${postagem.hashCode()}" role="button">Excluir
 							&raquo;</a>
 					</p>
 				</div>

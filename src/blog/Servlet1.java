@@ -42,9 +42,19 @@ int ordem = 0;
 	      /*for(Postagem p:BlogControle.getPostagens()){ 
 	      out.println(p.getTitulo()); 
 	      }*/
-	      s.setAttribute("blogcontrole", BlogControle); 
-	      request.getRequestDispatcher("blog.jsp").forward(request,response); 
+	      
 	      }
+	    if(request.getParameter("excluir")!=null){
+	    	int excluir = Integer.parseInt(request.getParameter("excluir")); 
+		      for(Postagem p:BlogControle.getPostagens()){ 
+		    	  if(p.hashCode()==excluir){
+		    		  BlogControle.getPostagens().remove(p);
+		    		  //s.setAttribute("blogcontrole", BlogControle);
+		    	  }
+		      }
+	    }
+	    s.setAttribute("blogcontrole", BlogControle); 
+	      request.getRequestDispatcher("blog.jsp").forward(request,response); 
 	}
 
 	/**
@@ -91,7 +101,7 @@ int ordem = 0;
 				s.setAttribute("blogcontrole", BlogControle);
 				s.setAttribute("postagem", postagem);
 				request.getRequestDispatcher("imagemupload.jsp").forward(request,response);
-
+				
 			}
 		}
 	}
