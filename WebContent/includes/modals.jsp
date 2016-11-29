@@ -48,7 +48,7 @@
 
 
 <!-- Modal Busca -->
-<form action="pesquisa.jsp" name="dados" method="post">
+<form action="pesquisa.jsp" name="dados" method="get">
 	<div class="modal fade" id="busca" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel">
 		<div class="modal-dialog" role="document">
@@ -64,7 +64,7 @@
 				<div class="modal-body">
 					<div class="form-group">
 						<label for="recipient-name" class="control-label">Busca:</label> <input
-							type="text" class="form-control" id="recipient-name" name="busca"
+							type="text" class="form-control" id="recipient-name" name="buscar"
 							placeholder="Buscar ...">
 					</div>
 				</div>

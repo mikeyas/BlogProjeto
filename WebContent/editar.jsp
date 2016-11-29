@@ -1,4 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import="blog.Usuario"%>
 <html lang="pt-br">
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -22,9 +23,9 @@
 		<div class="row">
 			<%
 				blog.BlogController BlogControle = (blog.BlogController) session.getAttribute("blogcontrole");
-				blog.Usuario user = null;
+				Usuario user = null;
 				if (session.getAttribute("admin") != null) {
-					user = (blog.Usuario) session.getAttribute("admin");
+					user = (Usuario) session.getAttribute("admin");
 				}
 
 				ArrayList<blog.Postagem> posts = null;

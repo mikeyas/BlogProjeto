@@ -32,7 +32,8 @@ public class Servlet2 extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		request.setCharacterEncoding("UTF8");
+		response.setContentType("text/html;charset=UTF-8");
 		HttpSession s = request.getSession();
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		Comentario coment = new Comentario();

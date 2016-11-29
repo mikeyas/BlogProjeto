@@ -66,6 +66,7 @@ int ordem = 0;
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF8");
 		response.setContentType("text/html;charset=UTF-8");
 		
 		Integer id = Integer.parseInt(request.getParameter("id"));
@@ -79,7 +80,7 @@ int ordem = 0;
 	}
 	
 	protected void addPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		request.setCharacterEncoding("UTF8");
 		//PrintWriter out = response.getWriter();
 		HttpSession s = request.getSession();
 				

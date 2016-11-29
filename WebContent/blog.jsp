@@ -1,11 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import="blog.Usuario"%>
 <html lang="pt-br">
 	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	<%@page import="javax.servlet.*"%>
 	<%@page import="javax.servlet.http.*"%>
 	<%@page import="java.util.List , java.util.ArrayList, java.util.Collections"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<jsp:include page="includes/head.jsp" />
 	
 	<title>Blog de Notícias</title>
@@ -26,9 +27,9 @@
 		<div class="row">
 		
 		<%
-				blog.Usuario user = null;
+				Usuario user = null;
 				if (session.getAttribute("admin") != null) {
-					user = (blog.Usuario) session.getAttribute("admin");
+					user = (Usuario) session.getAttribute("admin");
 				}%>
 			<c:set var="bcontrole" scope="session"
 				value="${sessionScope.blogcontrole}" />
@@ -36,6 +37,9 @@
 				<div class="col-md-4" align="center">
 					<h2>${postagem.titulo}: ${postagem.subtitulo}</h2>
 					<p>${postagem.categoria}</p>
+					<small>Em: <fmt:formatDate
+							type="both" dateStyle="short" timeStyle="short"
+							value="${postagem.data}" /></small>
 					<p>
 					<% if (user != null) { %>
 					<a class="btn btn-primary  btn-xs"
