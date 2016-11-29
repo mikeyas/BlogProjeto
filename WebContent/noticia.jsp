@@ -5,7 +5,6 @@
 	pageEncoding="UTF-8"%>
 <%@page import="javax.servlet.*"%>
 <%@page import="javax.servlet.http.*"%>
-<%@page import="java.util.List , java.util.ArrayList"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -47,7 +46,7 @@
 				<div class="row">
 					<div class="col-md-3">
 						<a href="#" data-toggle="modal" data-target="#novoComentario"
-							data-whatever="@mdo" class="btn btn-primary">Novo Post</a>
+							data-whatever="@mdo" class="btn btn-primary">Comentar...</a>
 					</div>
 
 					<div class="col-md-3">
