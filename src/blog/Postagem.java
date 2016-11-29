@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 
 public class Postagem implements Comparable<Postagem>{
 
+	private Integer id;
 	private String titulo;
 	private String subtitulo;
 	private String conteudo;
@@ -19,6 +20,14 @@ public class Postagem implements Comparable<Postagem>{
 	private String imagem;
 	private int ordenaTipo; 
 	   
+	public Integer getId() {
+		return id;
+	}
+	
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
 	  public int getOrdenaTipo() { 
 	    return ordenaTipo; 
 	  } 

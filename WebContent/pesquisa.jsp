@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
  <%@page import="javax.servlet.*"%>
 <%@page import="javax.servlet.http.*"%>
-<%@page import="java.util.List , java.util.ArrayList"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
