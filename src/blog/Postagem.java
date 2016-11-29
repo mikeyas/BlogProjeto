@@ -8,7 +8,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-public class Postagem {
+public class Postagem implements Comparable<Postagem>{
 
 	private String titulo;
 	private String subtitulo;
@@ -17,6 +17,15 @@ public class Postagem {
 	private Date data = new Date();
 	private List<Comentario> comentarios;
 	private String imagem;
+	private int ordenaTipo; 
+	   
+	  public int getOrdenaTipo() { 
+	    return ordenaTipo; 
+	  } 
+	 
+	  public void setOrdenaTipo(int ordenaTipo) { 
+	    this.ordenaTipo = ordenaTipo; 
+	  } 
 
 	
 	public String getImagem() {
@@ -71,5 +80,31 @@ public class Postagem {
 		return comentarios;
 	}
 
+	 @Override 
+	  public int compareTo(Postagem o) { 
+	     
+	    switch(this.getOrdenaTipo()){ 
+	     
+	    case 1: 
+	      return this.getTitulo().compareToIgnoreCase(o.getTitulo()); 
+	       
+	     
+	    case 2: 
+	      return this.getSubtitulo().compareToIgnoreCase(o.getSubtitulo()); 
+	       
+	       
+	    case 3: 
+	      return this.getCategoria().compareToIgnoreCase(o.getCategoria()); 
+	       
+	     
+	    case 4: 
+	      return this.getData().toString().compareToIgnoreCase(o.getData().toString()); 
+	       
+	     
+	    default: 
+	      return this.getData().toString().compareToIgnoreCase(o.getData().toString()); 
+	       
+	    } 
+	  } 
 	
 }
